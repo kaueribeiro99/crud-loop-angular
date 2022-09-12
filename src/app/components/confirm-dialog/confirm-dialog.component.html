@@ -1,0 +1,13 @@
+<div class="rounded">
+  <div mat-dialog-title class="mb-3">
+    <mat-icon class="icon-alert">error_outline</mat-icon>
+    <span class="title-dialog"> {{data.title}} </span>
+  </div>
+  <div>
+    <span class="message-dialog"> {{data.message}} </span>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button color="primary" [mat-dialog-close]="false">Cancel</button>
+    <button mat-button color="primary" [mat-dialog-close]="true">Remove</button>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.icon-alert {
+  font-size: 1.4rem;
+  color: #f39720;
+  vertical-align: middle;
+}
+
+.title-dialog {
+  font-weight: bold;
+}
+
+.message-dialog {
+  font-size: 15px;
+}

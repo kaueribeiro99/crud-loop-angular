@@ -1,0 +1,30 @@
+<!--<img style="width: auto; height: auto;" src="assets/images/background_img.png">-->
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()"> <!--Uso o formGroup pois ele quem vai pegar as informacoes digitadas no input e-mail e password-->
+  <img src="../../../assets/images/logo_loop_preto.png" style="width: 390px;">
+  <mat-form-field class="login-full-width" appearance="outline">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email" placeholder="Ex. test@example.com">
+    <mat-icon matSuffix>email</mat-icon>
+    <mat-error [formGroup]="loginForm" control="email" controlName="email">
+      Please enter a <strong>valid e-mail address</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="login-full-width" appearance="outline">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput formControlName="password">
+    <mat-icon matSuffix>key</mat-icon>
+    <mat-error [formGroup]="loginForm" control="password" controlName="password">
+      Enter your <strong>password</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <section>
+    <div class="">
+<!--O botão tem que ser do tipo "submit" para enviar as informações para a API-->
+      <button type="submit" style="width: 420px;font-weight: bold; margin-top: 30px; background-color: #f48c06; border-radius: 10px;" mat-raised-button color="primary">Login</button>
+    </div>
+  </section>
+</form>
+
+
+

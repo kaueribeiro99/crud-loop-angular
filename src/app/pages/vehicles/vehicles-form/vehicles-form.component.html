@@ -1,0 +1,31 @@
+<form class="login-form" [formGroup]="vehicleForm">
+<h3 mat-dialog-title cdkFocusInitial>{{title}}</h3>
+  <div class="dialog-form" cellspacing="10"><tr>
+    <mat-form-field style=" margin: auto 20px auto auto;" appearance="standard">
+      <mat-label>Icon</mat-label>
+      <input type="text" matInput formControlName="icon">
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Internal Code</mat-label>
+      <input type="text" matInput formControlName="codbt">
+      <mat-error [formGroup]="vehicleForm" control="email" controlName="email">
+        <strong>Required field</strong>
+      </mat-error>
+    </mat-form-field>
+  </tr></div>
+    <mat-form-field class="dialog-form" appearance="standard">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name">
+      <mat-error [formGroup]="vehicleForm" control="email" controlName="email">
+        <strong>Required field</strong>
+      </mat-error>
+    </mat-form-field>
+  <input type="text" [hidden]="true" matInput formControlName="type" value="type">
+  <input type="text" [hidden]="true" matInput formControlName="company" value="company">
+<div mat-dialog-actions align="end">
+  <button (click)="saveVehicle()" [mat-dialog-close]="true" mat-button color="primary" [disabled]="!canSave()">Save</button>
+  <button [mat-dialog-close]="false" mat-button color="primary">Close</button>
+</div>
+</form>
+
+
