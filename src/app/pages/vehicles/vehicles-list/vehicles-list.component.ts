@@ -10,7 +10,7 @@ import {VehicleModel} from "../../../models/vehicle.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {DialogService} from "../../../services/dialog.service";
-import {style} from "@angular/animations";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-vehicles-list',
@@ -36,6 +36,7 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     private vehicleService: VehiclesService,
+    private authService: AuthService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private router: Router,
@@ -129,6 +130,10 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
       duration: 3000,
       panelClass: 'snackBar-' + type
     });
+  }
+
+  onLogout() {
+    this.authService.logout()
   }
 }
 

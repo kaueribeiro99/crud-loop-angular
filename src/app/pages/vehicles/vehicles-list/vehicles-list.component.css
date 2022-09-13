@@ -7,6 +7,42 @@ td, th {
   width: 30%;
 }
 
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  background-color: #3e64ff;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0px 0px 5px gray;
+}
+
+.toolbar img {
+  margin: 0 50px;
+}
+
+.toolbar #logout-logo {
+  margin: 0 66%;
+  font-size: 1rem;
+  width:3rem;
+  float: right;
+}
+
+.toolbar #logout-logo:hover {
+  opacity: 0.7;
+}
+
+.icon-header{
+  color: #ffffff !important;
+  background-color: #3e64ff;
+  border:none;
+}
+
+
 .search {
   margin: 10px;
   margin-top: 1%;

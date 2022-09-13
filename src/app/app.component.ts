@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {AuthService} from "./services/auth.service";
 
 
 @Component({
@@ -9,20 +11,17 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   title = 'crud-loop';
-  public showToolbar: any = false;
-
 
   constructor(
-      private router: Router
+      private router: Router,
+      private authService: AuthService
   ) { }
 
   ngOnInit() {
-    // this.showToolbar = sessionStorage.getItem('firebase') ?? false
+
   }
 
-  // Esse método remove todos os dados salvos no sessionStorage
-  logout() {
-    sessionStorage.clear();
-    this.router.navigate(['/login']);
+  onLogout() {
+    this.authService.logout()
   }
 }
