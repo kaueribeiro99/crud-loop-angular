@@ -15,28 +15,30 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ReactiveFormsModule} from "@angular/forms";
+import {IconSelectorComponent} from "../../components/icon-selector/icon-selector.component";
 
 
 @NgModule({
-  declarations: [
-    VehiclesListComponent,
-    VehiclesFormComponent
-  ],
-  imports: [
-    CommonModule,
-    VehiclesRoutingModule,
-    MatPaginatorModule,
-    MatFormFieldModule,
-    MatTableModule,
-    MatSortModule,
-    MatButtonModule,
-    MatProgressBarModule,
-    MatInputModule,
-    MatButtonToggleModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatDialogModule,
-    ReactiveFormsModule
-  ]
+    declarations: [
+        VehiclesListComponent,
+        VehiclesFormComponent,
+        IconSelectorComponent
+    ],
+    imports: [
+        CommonModule,
+        VehiclesRoutingModule,
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatTableModule,
+        MatSortModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        MatInputModule,
+        MatButtonToggleModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatDialogModule,
+        ReactiveFormsModule
+    ]
 })
 export class VehiclesModule { }

@@ -1,8 +1,8 @@
 <div class="toolbar" role="banner">
   <img width="200" alt="Crud Loop" src="assets/images/logo_loop_branco.png"/>
   <div class="spacer"></div>
-<button (click)="onLogout()" id="logout-logo" class="icon-header" aria-label="Logout" title="Logout">
-  <mat-icon aria-hidden="false" fontIcon="logout"></mat-icon>
+<button (click)="onLogout()" id="logout-logo" aria-label="Logout" title="Logout">
+  <i class="mdi mdi-logout"></i> Logout
 </button>
 </div>
 <div class="title-page">
@@ -23,7 +23,9 @@
 
     <ng-container matColumnDef="icon">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Icon </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle.icon}} </td>
+      <td mat-cell  style="font-weight: 500;" *matCellDef="let vehicle">
+        <img *ngIf="vehicle.icon" class="truck-icon" [src]=" 'https://cdn.readymix.io/img/icons/' + vehicle.icon " />
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="codbt">
@@ -40,11 +42,11 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let vehicle">
         <div class="mat-icon-no-color">
-          <button (click)="openDialogVehicles(vehicle)" class="icons-vehicles" matTooltip="Edit Vehicle">
-            <mat-icon>edit_outline</mat-icon>
+          <button (click)="openDialogVehicles(vehicle)" class="icons-options" matTooltip="Edit Vehicle">
+            <i style="font-size: 18px;" class="mdi mdi-square-edit-outline"></i>
           </button>
-          <button (click)="deleteVehicles(vehicle.id, vehicle.name)" class="icons-vehicles" matTooltip="Remove Vehicle">
-            <mat-icon>delete_outline</mat-icon>
+          <button (click)="deleteVehicles(vehicle.id, vehicle.name)" class="icons-options" matTooltip="Remove Vehicle">
+            <i style="font-size: 18px;" class="mdi mdi-trash-can-outline"></i>
           </button>
         </div>
       </td>
@@ -53,6 +55,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator class="mat-paginator" [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
+  <mat-paginator class="mat-paginator" [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
   </div>
 </div>

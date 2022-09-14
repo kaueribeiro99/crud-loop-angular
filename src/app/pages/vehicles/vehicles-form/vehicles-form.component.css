@@ -1,16 +1,14 @@
-.dialog-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+.input-fields {
+  margin: 20px 0 0 10px;
 }
-
-td {
-  padding-right: 8px;
-}
-
 
 h3 {
   font-weight: bold;
   width: auto;
   border-bottom: 1px solid #d9d9d9;
+}
+
+.mat-error-icon {
+  display: inline-flex;
+  vertical-align: top;
 }

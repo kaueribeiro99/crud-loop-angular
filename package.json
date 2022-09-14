@@ -23,6 +23,7 @@
     "@mdi/font": "^7.0.96",
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
+    "material-design-icons": "^3.0.1",
     "ngx-webstorage": "^10.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

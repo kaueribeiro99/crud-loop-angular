@@ -1,0 +1,62 @@
+.icon_selector{
+  width:100%;
+  max-height: calc(4 * (40px));
+  position: relative;
+}
+
+.icon_selector button {
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+}
+
+.icon_selector .icon_gallery{
+  width: 100%;
+  position:absolute;
+  min-height:40px;
+  max-width: 100%;
+  max-height: calc(4 * (40px));
+  overflow-y:auto;
+  z-index: 10;
+  background:#fff;
+  border-radius: 0.3rem;
+  box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+}
+.icon_preview{
+  height:32px;
+  width:32px;
+  -webkit-filter: drop-shadow(0.5px 0.5px 0 #454545)
+  drop-shadow(-0.5px -0.5px 0 #454545);
+  filter: drop-shadow(1px 1px 0 #454545)
+  drop-shadow(-0.5px -0.5px 0 #454545);
+}
+
+.icon_selector[position="top"] .icon_gallery{
+  bottom:100%;
+}
+.icon_selector[position="bottom"] .icon_gallery{
+  top:100%;
+}
+.icon_selector[position="left"] .icon_gallery{
+  right: calc(100% + 16px);
+  top: calc(-80px + 50%);
+}
+.icon_selector[position="right"] .icon_gallery{
+  left: calc(100% + 16px);
+  top: calc(-80px + 50%);
+}
+
+.icon_element{
+  display: inline-flex;
+  height: 32px;
+  width: 32px;
+  margin: 4px;
+  -webkit-filter: drop-shadow(0.5px 0.5px 0 #454545)
+  drop-shadow(-0.5px -0.5px 0 #454545);
+  filter: drop-shadow(1px 1px 0 #454545)
+  drop-shadow(-0.5px -0.5px 0 #454545);
+}

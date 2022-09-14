@@ -1,0 +1,15 @@
+<div class="icon_selector" [attr.position]="position">
+    <button [disabled]="disable" (click)="toggleGallery()"  class="d-inline-flex align-items-center flex-row rounded px-2 py-1 w-100">
+        <div class="icon_preview" [ngStyle]="{'background-image':'url('+iconPath + showSelectedIcon()+')'}"></div>
+        <span style="font-size: 16px; margin-left: 10px;" class="ml-2">Icon</span>
+    </button>
+    <div [hidden]="!displayGallery" class="icon_gallery scroller">
+        <div
+            *ngFor="let icon of icons; let i = index"
+            [ngStyle]="{'background-image':'url('+ iconPath + icon +')'}"
+            class="cursor-pointer icon_element"
+            (click)="selectIcon(icon)"
+            [tabindex]="i"
+        ></div>
+    </div>
+</div>

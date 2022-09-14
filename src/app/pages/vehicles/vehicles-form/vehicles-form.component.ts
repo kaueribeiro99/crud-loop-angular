@@ -20,11 +20,9 @@ export class VehiclesFormComponent implements OnInit {
   title: any; //title da página randômico
   action: string; // ação para saber se o usuário está editando ou incluindo
   vehicle: VehicleModel;
-
-  type: any;
-
   loading: boolean = false;
-  vehicleForm !: FormGroup; //inicializo o formGroup aqui
+  vehicleForm!: FormGroup; //inicializo o formGroup aqui
+
 
   constructor(
       private formBuilder: FormBuilder,
@@ -72,8 +70,8 @@ export class VehiclesFormComponent implements OnInit {
     this.dialog.close()
   }
 
-  saveVehicle() {
-    if(this.vehicleForm.valid){ // Aqui eu válido o form antes de fazer qualquer ação
+  async saveVehicle() {
+    if (this.vehicleForm.valid) { // Aqui eu válido o form antes de fazer qualquer ação
 
       this.loading = true;
 
@@ -87,7 +85,6 @@ export class VehiclesFormComponent implements OnInit {
         console.log(error);
       })
       .finally(() => {
-        this.loading = false;
       })
       }
       else { // Se não tiver ID, eu chamo o método de Create com o form limpo
@@ -110,6 +107,10 @@ export class VehiclesFormComponent implements OnInit {
       }
     }
   }
+
+  public onIconSelected = (icon: string) => {
+    this.vehicleForm.patchValue({'icon': icon});
+  };
 
   // Método para preencher o form com os dados
   populateForm(vehicle: VehicleModel){
