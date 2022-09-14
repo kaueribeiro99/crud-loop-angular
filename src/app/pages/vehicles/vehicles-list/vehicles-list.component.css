@@ -46,13 +46,14 @@ td, th {
 
 .search {
   margin: 10px;
-  margin-top: 1%;
+  margin-top: 2%;
   margin-left: 2%;
 }
+
 .btn-add-vehicles {
   float: right;
-  top: 30px;
-  right: 30px;
+  top: 35px;
+  right: 25px;
   border: 1px solid #d9d9d9;
   height: 40px;
   width: 120px;
@@ -60,7 +61,6 @@ td, th {
   font-weight: bold;
   color: #0c56c9;
   background-color: #ffffff;
-
 }
 
 .icons-options {
@@ -69,6 +69,7 @@ td, th {
   background-color: #ffffff;
   width: 40px;
   height: 40px;
+  color: #585858;
 }
 
 .icons-options:hover {

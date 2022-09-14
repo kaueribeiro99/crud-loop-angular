@@ -31,3 +31,14 @@ div.mat-simple-snackbar-action {
 .mat-progress-bar-fill::after {
   background-color: rgb(62, 100, 255)
 }
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  display: inline-flex;
+  margin-left: 7px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-flex {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}

@@ -11,8 +11,8 @@
 <div class="header-table">
   <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
   <mat-form-field appearance="outline" class="search">
-    <mat-label class="search">Search</mat-label>
-    <mat-icon matPrefix>search</mat-icon>
+    <mat-label>Search</mat-label>
+    <i matPrefix class="mdi mdi-magnify"></i>
     <input matInput (keyup)="applyFilter($event)" #input>
   </mat-form-field>
     <button (click)="openDialogVehicles()"  class="btn-add-vehicles" mat-button color="primary">Add Vehicle</button>
@@ -23,7 +23,7 @@
 
     <ng-container matColumnDef="icon">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Icon </th>
-      <td mat-cell  style="font-weight: 500;" *matCellDef="let vehicle">
+      <td mat-cell style="font-weight: 500;" *matCellDef="let vehicle">
         <img *ngIf="vehicle.icon" class="truck-icon" [src]=" 'https://cdn.readymix.io/img/icons/' + vehicle.icon " />
       </td>
     </ng-container>
@@ -43,10 +43,10 @@
       <td mat-cell *matCellDef="let vehicle">
         <div class="mat-icon-no-color">
           <button (click)="openDialogVehicles(vehicle)" class="icons-options" matTooltip="Edit Vehicle">
-            <i style="font-size: 18px;" class="mdi mdi-square-edit-outline"></i>
+            <i class="mdi mdi-square-edit-outline"></i>
           </button>
           <button (click)="deleteVehicles(vehicle.id, vehicle.name)" class="icons-options" matTooltip="Remove Vehicle">
-            <i style="font-size: 18px;" class="mdi mdi-trash-can-outline"></i>
+            <i class="mdi mdi-trash-can-outline"></i>
           </button>
         </div>
       </td>
