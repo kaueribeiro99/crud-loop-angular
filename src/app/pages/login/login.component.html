@@ -4,7 +4,7 @@
   <mat-form-field class="login-full-width" appearance="outline">
     <mat-label>Email</mat-label>
     <input type="email" matInput formControlName="email" placeholder="Ex. test@example.com">
-    <mat-icon style="color: #484848" matSuffix>email</mat-icon>
+    <i matPrefix class="mdi mdi-email-outline"></i>
     <mat-error [formGroup]="loginForm" control="email" controlName="email">
       Please enter a <strong>valid e-mail address</strong>
     </mat-error>
@@ -12,7 +12,7 @@
   <mat-form-field class="login-full-width" appearance="outline">
     <mat-label>Password</mat-label>
     <input type="password" matInput formControlName="password">
-    <mat-icon style="color: #484848" matSuffix>key</mat-icon>
+    <i matPrefix class="mdi mdi-key-outline"></i>
     <mat-error [formGroup]="loginForm" control="password" controlName="password">
       Enter your <strong>password</strong>
     </mat-error>
