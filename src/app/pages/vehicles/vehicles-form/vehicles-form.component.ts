@@ -1,12 +1,12 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {VehicleModel} from "../../../models/vehicle.model";
 import {VehiclesService} from "../../../services/vehicles.service";
 
-let type: any = 0;
-let company: any = 429;
+let type: number = 0;
+let company: number = 429;
 
 @Component({
   selector: 'app-vehicles-form',
@@ -17,7 +17,7 @@ let company: any = 429;
 export class VehiclesFormComponent implements OnInit {
 
 
-  title: any; //title da página randômico
+  title: string; //title da página randômico
   action: string; // ação para saber se o usuário está editando ou incluindo
   vehicle: VehicleModel;
   loading: boolean = false;

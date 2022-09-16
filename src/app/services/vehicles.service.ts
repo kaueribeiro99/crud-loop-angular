@@ -45,7 +45,7 @@ export class VehiclesService {
 
     let headers = await this.apiHeader()
 
-    return this.http.post<VehicleModel>(this.APIVehicle, {icon, codbt, name,  type, company}, {headers: headers})
+    return this.http.post<VehicleModel[]>(this.APIVehicle, {icon, codbt, name,  type, company}, {headers: headers})
       .toPromise()
       .catch()
   }
@@ -54,7 +54,7 @@ export class VehiclesService {
 
     let headers = await this.apiHeader()
 
-    return this.http.put<VehicleModel>(this.APIVehicle + '/' + id, body, {headers: headers})
+    return this.http.put<VehicleModel[]>(this.APIVehicle + '/' + id, body, {headers: headers})
       .toPromise()
       .catch()
   }

@@ -1,11 +1,11 @@
 export class VehicleModel {
 
   constructor(
-    public id: any,
-    public company: any,
+    public id: number,
+    public company: number,
     public codbt: string,
     public name: string,
     public icon: string,
-    public type: any
+    public type: number
   ) { }
 }

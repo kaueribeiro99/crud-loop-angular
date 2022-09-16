@@ -11,6 +11,7 @@ export class DialogService {
       private dialog: MatDialog
   ) { }
 
+  // Dialogo de confirmação genérico
   openConfirmDialog(title: string, message: string){
     return this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
