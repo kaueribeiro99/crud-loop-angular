@@ -29,8 +29,8 @@
   <input type="text" [hidden]="true" matInput formControlName="type" value="type">
   <input type="text" [hidden]="true" matInput formControlName="company" value="company">
 <div mat-dialog-actions align="end">
-  <button (click)="saveVehicle()" [mat-dialog-close]="true" mat-button color="primary" [disabled]="!canSave()">Save</button>
-  <button [mat-dialog-close]="false" mat-button color="primary">Close</button>
+  <button (click)="saveVehicle(true)" mat-button color="primary" [disabled]="!canSave()">Save</button>
+  <button (click)="close()" mat-button color="primary">Close</button>
 </div>
 </form>
 

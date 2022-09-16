@@ -66,25 +66,25 @@ export class VehiclesFormComponent implements OnInit {
     });
   }
 
-  close(){
-    this.dialog.close()
-  }
-
-  async saveVehicle() {
+  async saveVehicle(close: boolean) {
     if (this.vehicleForm.valid) { // Aqui eu válido o form antes de fazer qualquer ação
 
       this.loading = true;
 
       if (this.action == 'edit') { // Verifico se a ação é o click no botão de Editar, se sim, eu preencho o form e chamo o método de Update
         this.vehicleService.putVehicles(this.vehicle.id, this.vehicleForm.value).then(result => {
-          this.openSnackBar('Vehicle updated successfully', 'Close', 'success');
           this.vehicle = result;
+          this.openSnackBar('Vehicle updated successfully', 'Close', 'success');
+          if (close) {
+            this.close();
+          }
       })
       .catch(error => {
         this.openSnackBar('Error updated vehicle', 'Close', 'danger');
         console.log(error);
       })
       .finally(() => {
+        this.loading = false;
       })
       }
       else { // Se não tiver ID, eu chamo o método de Create com o form limpo
@@ -94,8 +94,11 @@ export class VehiclesFormComponent implements OnInit {
         let name = this.vehicleForm.get('name')?.value
 
         this.vehicleService.postVehicles(icon, codbt, name, type, company).then((result: VehicleModel) => {
-          this.openSnackBar('Vehicle created successfully', 'Close', 'success');
           this.vehicle = result;
+          this.openSnackBar('Vehicle created successfully', 'Close', 'success');
+          if (close) {
+            this.close();
+          }
         })
         .catch(error => {
           this.openSnackBar('Error created vehicle', 'Close', 'danger');
@@ -130,5 +133,9 @@ export class VehiclesFormComponent implements OnInit {
       duration: 3000,
       panelClass: 'snackBar-' + type
     });
+  }
+
+  close(){
+    this.dialog.close(this.vehicle)
   }
 }

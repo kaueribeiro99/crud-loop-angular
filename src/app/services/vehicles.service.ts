@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {VehicleModel} from "../models/vehicle.model";
-import {take} from "rxjs";
+import {delay, take} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +32,11 @@ export class VehiclesService {
   }
 
   // O service é usado para fazer o request da API
-   async getVehicles():Promise<any>{
+  async getVehicles():Promise<any>{
 
     let headers = await this.apiHeader()
 
-    return this.http.get<VehicleModel>(this.APIVehicle, {headers: headers })
+    return this.http.get<VehicleModel[]>(this.APIVehicle, {headers: headers })
       .toPromise()
       .catch()
   }
@@ -53,7 +53,6 @@ export class VehiclesService {
   async putVehicles(id: number, body: VehicleModel):Promise<any>{
 
     let headers = await this.apiHeader()
-    console.log(body)
 
     return this.http.put<VehicleModel>(this.APIVehicle + '/' + id, body, {headers: headers})
       .toPromise()
