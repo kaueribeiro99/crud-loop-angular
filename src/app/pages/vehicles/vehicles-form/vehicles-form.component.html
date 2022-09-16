@@ -1,4 +1,5 @@
 <form [formGroup]="vehicleForm">
+<i (click)="closeDialog(true)" style="float: right" class="mdi mdi-close"></i>
 <h3 mat-dialog-title>{{title}}</h3>
   <div class="container-fluid pt-3">
     <div class="row mb-2">
@@ -30,7 +31,7 @@
   <input type="text" [hidden]="true" matInput formControlName="company" value="company">
 <div mat-dialog-actions align="end">
   <button (click)="saveVehicle(true)" mat-button color="primary" [disabled]="!canSave()">Save and Close</button>
-  <button (click)="closeDialog(false)" mat-button color="primary">Close</button>
+  <button (click)="saveVehicle(false)" mat-button color="primary" [disabled]="!canSave()">Save</button>
 </div>
 </form>
 

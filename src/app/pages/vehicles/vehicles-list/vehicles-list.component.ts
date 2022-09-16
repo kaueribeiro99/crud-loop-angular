@@ -116,8 +116,8 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
       }
     });
 
-    ref.afterClosed().subscribe((saved: boolean) => {
-      if (saved) {
+    ref.afterClosed().subscribe((saved_close: boolean) => {
+      if (saved_close) {
         this.listVehicle()
       }
     });

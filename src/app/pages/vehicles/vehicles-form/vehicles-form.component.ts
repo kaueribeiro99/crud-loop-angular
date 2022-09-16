@@ -130,8 +130,8 @@ export class VehiclesFormComponent implements OnInit {
     });
   }
 
-  closeDialog(saved: boolean) {
-    this.dialog.close(saved)
+  closeDialog(saved_close: boolean) {
+    this.dialog.close(saved_close)
   }
 }
 
