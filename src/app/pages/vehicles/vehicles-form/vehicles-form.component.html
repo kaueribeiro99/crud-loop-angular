@@ -29,6 +29,7 @@
   </mat-form-field>
   <input type="text" [hidden]="true" matInput formControlName="type" value="type">
   <input type="text" [hidden]="true" matInput formControlName="company" value="company">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <div mat-dialog-actions align="end">
   <button (click)="saveVehicle(true)" mat-button color="primary" [disabled]="!canSave()">Save and Close</button>
   <button (click)="saveVehicle(false)" mat-button color="primary" [disabled]="!canSave()">Save</button>
