@@ -17,12 +17,12 @@ let company: number = 429;
 export class VehiclesFormComponent implements OnInit {
 
 
-  title: string; //title da página randômico
+  title: string; // title da página randômico
   action: string; // ação para saber se o usuário está editando ou incluindo
   vehicle: VehicleModel;
   loading: boolean = false;
-  vehicleForm!: FormGroup; //inicializo o formGroup aqui
-  idVehicle: number;
+  vehicleForm!: FormGroup; // inicializo o formGroup aqui
+  idVehicle: number; // uso essa variavél para saber se a requisição já possui ID
 
 
   constructor(
@@ -48,15 +48,15 @@ export class VehiclesFormComponent implements OnInit {
   ngOnInit() {
     this.inputValidators()
 
-    if (this.action == 'edit') {
+    if (this.action == 'edit') { // Verifico se a ação é de editar, altero o titulo do dialogo e preecho o form
       this.title = 'Edit Vehicle';
       this.populateForm(this.vehicle)
-
     } else {
       this.title = 'New Vehicle'
     }
   }
 
+  // Método para validar os inputs
   inputValidators() {
     this.vehicleForm = this.formBuilder.group({
       icon: [null],
@@ -72,7 +72,7 @@ export class VehiclesFormComponent implements OnInit {
 
       this.loading = true;
 
-      if (this.action == 'edit' && this.idVehicle) { // Verifico se a ação é o click no botão de Editar, se sim, eu preencho o form e chamo o método de Update
+      if (this.action == 'edit' && this.idVehicle) { // Verifico se a ação é o click no botão de Editar e se tem ID no request, se sim, eu preencho o form e chamo o método de Update
         this.vehicleService.putVehicles(this.idVehicle, this.vehicleForm.value).then(response_api  => {
           this.vehicle = response_api;
           this.openSnackBar('Vehicle updated successfully', 'Close', 'success');
@@ -86,7 +86,7 @@ export class VehiclesFormComponent implements OnInit {
         .finally(() => {
           this.loading = false;
         })
-      } else { // Se não tiver ID, eu chamo o método de Create com o form limpo
+      } else { // Se não tiver ID e a ação não for de Edit, eu chamo o método de Create com o form limpo
 
         let icon = this.vehicleForm.get('icon')?.value
         let codbt = this.vehicleForm.get('codbt')?.value
@@ -109,6 +109,7 @@ export class VehiclesFormComponent implements OnInit {
     }
   }
 
+  // Método para pegar os icons do projeto
   public onIconSelected = (icon: string) => {
     this.vehicleForm.patchValue({'icon': icon});
   };
@@ -133,6 +134,7 @@ export class VehiclesFormComponent implements OnInit {
     });
   }
 
+  // Método para verificar se posso ou não fechar o dialogo
   closeDialog(saved_close: boolean) {
     if (saved_close) {
       this.dialog.close(this.vehicle)

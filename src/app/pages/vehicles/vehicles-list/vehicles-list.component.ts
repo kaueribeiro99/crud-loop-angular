@@ -41,11 +41,10 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
     private _snackBar: MatSnackBar,
     private router: Router,
     private dialogService: DialogService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
-    this.listVehicle()
+    this.listVehicle() //Chamo o método de listar os veiculos no OnInit para quando logar, já listar os veiculos na tabela
   }
 
 
