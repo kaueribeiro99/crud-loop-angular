@@ -22,6 +22,7 @@ export class VehiclesFormComponent implements OnInit {
   vehicle: VehicleModel;
   loading: boolean = false;
   vehicleForm!: FormGroup; //inicializo o formGroup aqui
+  idVehicle: number;
 
 
   constructor(
@@ -33,8 +34,10 @@ export class VehiclesFormComponent implements OnInit {
   ) {
     this.title = this.data.title;
     this.action = this.data.action;
+    this.idVehicle = this.data.idVehicle;
     if (this.action == 'edit') {
       this.vehicle = this.data.vehicle;
+      this.idVehicle = this.data.vehicle.id;
       this.vehicle.type = type;
     } else {
       this.vehicle = this.data.vehicle;
@@ -69,12 +72,12 @@ export class VehiclesFormComponent implements OnInit {
 
       this.loading = true;
 
-      if (this.action == 'edit') { // Verifico se a ação é o click no botão de Editar, se sim, eu preencho o form e chamo o método de Update
-        this.vehicleService.putVehicles(this.vehicle.id, this.vehicleForm.value).then(response_api  => {
+      if (this.action == 'edit' && this.idVehicle) { // Verifico se a ação é o click no botão de Editar, se sim, eu preencho o form e chamo o método de Update
+        this.vehicleService.putVehicles(this.idVehicle, this.vehicleForm.value).then(response_api  => {
           this.vehicle = response_api;
           this.openSnackBar('Vehicle updated successfully', 'Close', 'success');
           if (close)
-            this.closeDialog(response_api);
+            this.closeDialog(true);
         })
         .catch(error => {
           this.openSnackBar('Error updated vehicle', 'Close', 'danger');
@@ -93,7 +96,7 @@ export class VehiclesFormComponent implements OnInit {
           this.vehicle = response_api;
           this.openSnackBar('Vehicle created successfully', 'Close', 'success');
           if (close)
-            this.closeDialog(response_api);
+            this.closeDialog(true);
         })
         .catch(error => {
           this.openSnackBar('Error created vehicle', 'Close', 'danger');

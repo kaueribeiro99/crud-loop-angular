@@ -18,7 +18,7 @@ td, th {
   background-color: #3e64ff;
   color: white;
   font-weight: 600;
-  box-shadow: 0px 0px 5px gray;
+  box-shadow: 0px 0px 10px gray;
 }
 
 .toolbar img {
@@ -45,9 +45,7 @@ td, th {
 }
 
 .search {
-  margin: 10px;
-  margin-top: 2%;
-  margin-left: 2%;
+  margin: 2% 10px 10px 2%;
 }
 
 .btn-add-vehicles {
@@ -86,11 +84,6 @@ td, th {
   box-shadow: 0px 0px 10px #d7d7d7;
 }
 
-.title-page {
-  margin:100px 110px -70px;
-  font-size: 1.75rem;
-}
-
 .truck-icon {
   -webkit-filter: drop-shadow(0.5px 0.5px 0 #454545)
   drop-shadow(-0.5px -0.5px 0 #454545);
@@ -101,4 +94,14 @@ td, th {
 
 .size-icon-options {
   font-size: 17px;
+}
+
+h3 {
+  font-weight: bold;
+  color: #494949;
+  font-size: 1.65rem;
+  margin:90px 100px -70px;
+  width: auto;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 15px;
 }

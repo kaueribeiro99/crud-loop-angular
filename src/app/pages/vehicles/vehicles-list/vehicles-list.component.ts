@@ -117,6 +117,7 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
       }
     });
 
+    // Uso essa função para saber
     ref.afterClosed().subscribe((result: {success: boolean}) => {
       if (result.success) {
         this.listVehicle()
