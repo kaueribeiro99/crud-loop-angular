@@ -19,3 +19,18 @@
 .login-full-width {
   width: 100%;
 }
+
+
+/*Uso esse CSS para a imagem não ficar distorcida quando diminui a tela */
+.background-img {
+  background-image: url("src/assets/images/background_img.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+}

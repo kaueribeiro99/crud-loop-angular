@@ -28,11 +28,6 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     private vehicleService: VehiclesService,
@@ -53,6 +48,38 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  public openDialogVehicles(vehicle?: VehicleModel) {
+
+
+    // tirar essa ação
+    let action = 'create';
+
+    if (vehicle) {
+      action = 'edit';
+    }
+
+    let ref = this.dialog.open(VehiclesFormComponent, {
+      panelClass: 'dialog',
+      autoFocus: false,
+      data: {
+        action: action,
+        vehicle: vehicle
+      }
+    });
+
+    // Uso essa função para saber se o veiculo foi salvo na tabela, se o retorno da API for success, eu listo os veiculos
+    ref.afterClosed().subscribe((result: {success: boolean}) => {
+      if (result.success) {
+        this.listVehicle()
+      }
+    });
+  }
+
   listVehicle() {
     this.loading = true;
 
@@ -71,10 +98,11 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
     })
   }
 
+  // O resultado do meu dialogo retorna true ou false, se for true, eu chamo o a api de delete e listo os veiculos
   deleteVehicles(id: number, name: string) {
     this.dialogService.openConfirmDialog('Remove Vehicle', 'Are you sure you want to remove the vehicle ' + name + '?')
-      .afterClosed().subscribe(response_api => {
-        if(response_api){
+      .afterClosed().subscribe(result_dialog => {
+        if(result_dialog){
           this.loading = true;
           this.vehicleService.delVehicles(id).then(() => {
             this.listVehicle();
@@ -99,30 +127,6 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
     }
   }
 
-  public openDialogVehicles(vehicle?: VehicleModel) {
-
-    let action = 'create';
-
-    if (vehicle) {
-      action = 'edit';
-    }
-
-    let ref = this.dialog.open(VehiclesFormComponent, {
-      panelClass: 'dialog',
-      autoFocus: false,
-      data: {
-          action: action,
-          vehicle: vehicle
-      }
-    });
-
-    // Uso essa função para saber
-    ref.afterClosed().subscribe((result: {success: boolean}) => {
-      if (result.success) {
-        this.listVehicle()
-      }
-    });
-  }
 
   public openSnackBar(message: string, action: string, type: string){
     this._snackBar.open(message, action, {
