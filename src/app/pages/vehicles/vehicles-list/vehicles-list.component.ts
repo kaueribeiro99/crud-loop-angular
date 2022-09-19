@@ -59,8 +59,8 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
 
     // Uso o .data no result para pegar somente o array de dados da API
     // Salvo meu result.data em uma variável e chamo ela no dataSource para a paginação funcionar, depois inicializo a variavel no OnInit
-    this.vehicleService.getVehicles().then((result: {success: boolean, data: VehicleModel}) => {
-      this.vehicles = result.data;
+    this.vehicleService.getVehicles().then((response_api) => {
+      this.vehicles = response_api.data;
       this.dataSource.data = this.vehicles;
     })
     .catch(error => {
@@ -74,8 +74,8 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
 
   deleteVehicles(id: number, name: string) {
     this.dialogService.openConfirmDialog('Remove Vehicle', 'Are you sure you want to remove the vehicle ' + name + '?')
-      .afterClosed().subscribe(response =>{
-        if(response){
+      .afterClosed().subscribe(response_api => {
+        if(response_api){
           this.loading = true;
           this.vehicleService.delVehicles(id).then(() => {
             this.listVehicle();

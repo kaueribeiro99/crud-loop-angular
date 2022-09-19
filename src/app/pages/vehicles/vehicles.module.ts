@@ -16,6 +16,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ReactiveFormsModule} from "@angular/forms";
 import {IconSelectorComponent} from "../../components/icon-selector/icon-selector.component";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {IconSelectorComponent} from "../../components/icon-selector/icon-selecto
         MatIconModule,
         MatTooltipModule,
         MatDialogModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatProgressSpinnerModule
     ]
 })
 export class VehiclesModule { }

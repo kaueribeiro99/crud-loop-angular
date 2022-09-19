@@ -12,3 +12,9 @@ h3 {
   display: inline-flex;
   vertical-align: top;
 }
+
+.mat-spinner-style {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 5px;
+}
