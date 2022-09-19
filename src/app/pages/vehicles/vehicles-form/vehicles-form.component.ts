@@ -74,7 +74,7 @@ export class VehiclesFormComponent implements OnInit {
           this.vehicle = response_api;
           this.openSnackBar('Vehicle updated successfully', 'Close', 'success');
           if (close)
-            this.closeDialog(true);
+            this.closeDialog(response_api);
         })
         .catch(error => {
           this.openSnackBar('Error updated vehicle', 'Close', 'danger');
@@ -93,7 +93,7 @@ export class VehiclesFormComponent implements OnInit {
           this.vehicle = response_api;
           this.openSnackBar('Vehicle created successfully', 'Close', 'success');
           if (close)
-            this.closeDialog(true);
+            this.closeDialog(response_api);
         })
         .catch(error => {
           this.openSnackBar('Error created vehicle', 'Close', 'danger');
@@ -131,7 +131,12 @@ export class VehiclesFormComponent implements OnInit {
   }
 
   closeDialog(saved_close: boolean) {
-    this.dialog.close(saved_close)
+    if (saved_close) {
+      this.dialog.close(this.vehicle)
+    }
+    else {
+      this.dialog.close()
+    }
   }
 }
 

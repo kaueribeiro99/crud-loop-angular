@@ -110,14 +110,15 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
 
     let ref = this.dialog.open(VehiclesFormComponent, {
       panelClass: 'dialog',
+      autoFocus: false,
       data: {
           action: action,
           vehicle: vehicle
       }
     });
 
-    ref.afterClosed().subscribe((saved_close: boolean) => {
-      if (saved_close) {
+    ref.afterClosed().subscribe((result: {success: boolean}) => {
+      if (result.success) {
         this.listVehicle()
       }
     });
