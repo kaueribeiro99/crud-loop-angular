@@ -69,21 +69,25 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/login'])
           }
 
-      // Pegando os dados salvos no sessionStorage para adicionar no headers da requisição do usuário o campo "company"
-      let token = sessionStorage.getItem('firebase')
-      let refreshtoken = sessionStorage.getItem('refresh')
-      let uid = sessionStorage.getItem('uid')
-      this.userService.user(token, refreshtoken, uid)
-        .then((result: {success: boolean, data: UserModel}) => {
-        console.log(result)
-          if (result.success){
-            sessionStorage.setItem('company', result.data.company)
-          }
-      }).catch();
-      }).catch();
+        // Pegando os dados salvos no sessionStorage para adicionar no headers da requisição do usuário o campo "company"
+        let token = sessionStorage.getItem('firebase')
+        let refreshtoken = sessionStorage.getItem('refresh')
+        let uid = sessionStorage.getItem('uid')
+        this.userService.user(token, refreshtoken, uid)
+          .then((result: {success: boolean, data: UserModel}) => {
+          console.log(result)
+            if (result.success){
+              sessionStorage.setItem('company', result.data.company)
+            }
+        }).catch();
+      }).catch(error => {
+        this.openSnackBar('Error download user', 'Close', 'danger');
+        console.log(error);
+      }).finally(() => {
+        this.loading = false;
+      })
     }
   }
-
 
   // Método para mostrar um alerta para o usuário
   public openSnackBar(message: string, action: string, type: string){

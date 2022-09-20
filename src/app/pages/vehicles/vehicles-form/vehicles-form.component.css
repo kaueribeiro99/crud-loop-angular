@@ -1,11 +1,10 @@
-.input-fields {
-  margin: 20px 0 0 10px;
-}
-
-h3 {
-  font-weight: bold;
+.title-form-vehicles {
+  font-weight: 400;
+  font-size: 16px;
   width: auto;
   border-bottom: 1px solid #d9d9d9;
+  padding: 5px 15px;
+  background-color: #fafafa;
 }
 
 .mat-error-icon {
@@ -18,3 +17,10 @@ h3 {
   align-items: center;
   margin-right: 5px;
 }
+
+.border-save-vehicles{
+  border-top: 1px solid #d9d9d9;
+  background-color: #fafafa;
+}
+
+

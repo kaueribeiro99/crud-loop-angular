@@ -1,5 +1,5 @@
 .icon_selector{
-  width:100%;
+  width: 100%;
   max-height: calc(4 * (40px));
   position: relative;
 }
@@ -10,7 +10,8 @@
   border-radius: 5px;
   display: inline-flex;
   align-items: center;
-  width: 100%;
+  margin-left: 23px;
+  width: 90%;
   height: 45px;
 }
 

@@ -1,6 +1,6 @@
 <form [formGroup]="vehicleForm">
-<i (click)="closeDialog(true)" style="float: right" class="mdi mdi-close"></i>
-<h3 mat-dialog-title>{{title}}</h3>
+<div (click)="closeDialog(true)" style="float: right; margin-top: 10px; margin-right: 15px" class="mdi mdi-close"></div>
+<div class="title-form-vehicles" mat-dialog-title>{{title}}</div>
   <div class="container-fluid pt-3">
     <div class="row mb-2">
       <div class="col-12">
@@ -13,6 +13,8 @@
       </div>
     </div>
   </div>
+
+  <div style="padding: 18px">
   <mat-form-field appearance="outline">
     <mat-label>Internal Code</mat-label>
     <input type="text" matInput formControlName="codbt">
@@ -20,16 +22,18 @@
       <mat-icon class="mat-error-icon">error_outline</mat-icon><strong> Required</strong>
     </mat-error>
   </mat-form-field>
-  <mat-form-field class="input-fields" appearance="outline">
+
+  <mat-form-field appearance="outline">
     <mat-label>Name</mat-label>
     <input type="text" matInput formControlName="name">
     <mat-error [formGroup]="vehicleForm" control="name" controlName="name">
       <mat-icon class="mat-error-icon">error_outline</mat-icon><strong> Required</strong>
     </mat-error>
   </mat-form-field>
+  </div>
   <input type="text" [hidden]="true" matInput formControlName="type" value="type">
   <input type="text" [hidden]="true" matInput formControlName="company" value="company">
-<div mat-dialog-actions align="end">
+<div class="border-save-vehicles" mat-dialog-actions align="end">
   <mat-spinner class="mat-spinner-style" [diameter]="20" *ngIf="loading" mode="indeterminate"></mat-spinner>
   <button (click)="saveVehicle(true)" mat-button color="primary" [disabled]="!canSave()">Save and Close</button>
   <button (click)="saveVehicle(false)" mat-button color="primary" [disabled]="!canSave()">Save</button>
