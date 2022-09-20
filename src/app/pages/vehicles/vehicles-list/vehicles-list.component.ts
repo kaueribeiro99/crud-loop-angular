@@ -19,7 +19,7 @@ import {AuthService} from "../../../services/auth.service";
 })
 export class VehiclesListComponent implements AfterViewInit, OnInit {
 
-  public vehicles: any;
+  public vehicles: VehicleModel[] = [];
   public loading: boolean = false;
 
   displayedColumns: string[] = ['icon', 'codbt', 'name', 'options'];
