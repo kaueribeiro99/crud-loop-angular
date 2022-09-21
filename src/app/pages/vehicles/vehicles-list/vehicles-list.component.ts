@@ -106,7 +106,7 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
           this.loading = true;
           this.vehicleService.delVehicles(id).then(() => {
             this.listVehicle();
-            this.openSnackBar('Vehicle deleted successfully', 'Close', 'success')
+            this.openSnackBar('Vehicle deleted successfully', 'Close', 'success');
           })
             .catch(error => {
               this.openSnackBar('Error deleting vehicle', 'Close', 'danger');
