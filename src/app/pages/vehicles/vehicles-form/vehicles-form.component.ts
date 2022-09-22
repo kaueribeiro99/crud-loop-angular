@@ -16,13 +16,13 @@ let company: number = 429;
 
 export class VehiclesFormComponent implements OnInit {
 
-
-  title: string; // title da página randômico
-  action: string; // ação para saber se o usuário está editando ou incluindo
-  vehicle: VehicleModel;
+  //Uso o !: para não precisar implementar um valor para a variável
+  title!: string; // title da página randômico
+  action!: string; // ação para saber se o usuário está editando ou incluindo
+  vehicle!: VehicleModel;
   loading: boolean = false;
   vehicleForm!: FormGroup; // inicializo o formGroup aqui
-  idVehicle: number; // uso essa variavél para saber se a requisição já possui ID
+  idVehicle!: number; // uso essa variavél para saber se a requisição já possui ID
 
 
   constructor(
@@ -31,7 +31,15 @@ export class VehiclesFormComponent implements OnInit {
       private vehicleService: VehiclesService,
       public dialog: MatDialogRef<VehiclesFormComponent>,
       @Inject(MAT_DIALOG_DATA) public data: VehiclesFormComponent
-  ) {
+  ) {}
+
+  ngOnInit() {
+    this.formValidators();
+    this.logicDialog();
+  }
+
+  // Método para diferenciar o dialogo quando a ação é de Edit e quando é de Create
+  logicDialog(){
     this.title = this.data.title;
     this.action = this.data.action;
     this.idVehicle = this.data.idVehicle;
@@ -39,25 +47,16 @@ export class VehiclesFormComponent implements OnInit {
       this.vehicle = this.data.vehicle;
       this.idVehicle = this.data.vehicle.id;
       this.vehicle.type = type;
+      this.title = 'Edit Vehicle';
+      this.populateForm(this.vehicle);
     } else {
       this.vehicle = this.data.vehicle;
-    }
-
-  }
-
-  ngOnInit() {
-    this.inputValidators()
-
-    if (this.action == 'edit') { // Verifico se a ação é de editar, altero o titulo do dialogo e preecho o form
-      this.title = 'Edit Vehicle';
-      this.populateForm(this.vehicle)
-    } else {
-      this.title = 'New Vehicle'
+      this.title = 'New Vehicle';
     }
   }
 
   // Método para validar os inputs
-  inputValidators() {
+  formValidators() {
     this.vehicleForm = this.formBuilder.group({
       icon: [null],
       name: [null, Validators.required],
