@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -23,6 +23,7 @@
     "@mdi/font": "^7.0.96",
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
+    "ajv": "^8.11.0",
     "material-design-icons": "^3.0.1",
     "ngx-webstorage": "^10.0.1",
     "rxjs": "~7.5.0",
