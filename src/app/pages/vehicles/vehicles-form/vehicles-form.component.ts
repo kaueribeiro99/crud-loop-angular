@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {VehicleModel} from "../../../models/vehicle.model";
+import {APIResponseModel, VehicleModel} from "../../../models/vehicle.model";
 import {VehiclesService} from "../../../services/vehicles.service";
 
 let type: number = 0;
@@ -19,10 +19,11 @@ export class VehiclesFormComponent implements OnInit {
   //Uso o !: para não precisar implementar um valor para a variável
   title!: string; // title da página randômico
   action!: string; // ação para saber se o usuário está editando ou incluindo
-  vehicle!: VehicleModel;
+  vehicle!: VehicleModel
   loading: boolean = false;
   vehicleForm!: FormGroup; // inicializo o formGroup aqui
   idVehicle!: number; // uso essa variavél para saber se a requisição já possui ID
+  savedChange!: boolean;
 
 
   constructor(
@@ -73,12 +74,14 @@ export class VehiclesFormComponent implements OnInit {
       let vehicles = this.vehicleForm.value
 
       if (this.action == 'edit' && this.idVehicle) { // Verifico se a ação é o click no botão de Editar e se tem ID no request, se sim, eu preencho o form e chamo o método de Update
-        this.vehicleService.putVehicles(this.idVehicle, vehicles).then((response_api)  => {
-          this.vehicle = response_api;
+        this.vehicleService.putVehicles(this.idVehicle, vehicles).then((response_api: APIResponseModel)  => {
+          this.vehicle = response_api.data;
+          this.idVehicle = response_api.data.id;
+          this.savedChange = true;
 
           this.openSnackBar('Vehicle updated successfully', 'Close', 'success');
           if (close)
-            this.closeDialog(true);
+            this.closeDialog();
         })
         .catch(error => {
           this.openSnackBar('Error updated vehicle', 'Close', 'danger');
@@ -89,16 +92,19 @@ export class VehiclesFormComponent implements OnInit {
         })
       } else { // Se não tiver ID e a ação não for de Edit, eu chamo o método de Create com o form limpo
 
-        this.vehicleService.postVehicles(vehicles).then((response_api) => {
-          this.vehicle = response_api;
+        this.vehicleService.postVehicles(vehicles).then((response_api: APIResponseModel) => {
+
+          // Uso essa lógica para o botão Save --> verifico se o dialog tem ID, se tiver eu chamo a ação de Edit, se não é a ação de Create
+          this.vehicle = response_api.data;
           this.idVehicle = response_api.data.id;
+          this.savedChange = true;
           if (this.idVehicle)
             this.title = 'Edit Vehicle';
             this.action = 'edit';
 
           this.openSnackBar('Vehicle created successfully', 'Close', 'success');
           if (close)
-            this.closeDialog(true);
+            this.closeDialog();
         })
         .catch(error => {
           this.openSnackBar('Error created vehicle', 'Close', 'danger');
@@ -137,12 +143,12 @@ export class VehiclesFormComponent implements OnInit {
   }
 
   // Método para verificar se posso ou não fechar o dialogo
-  closeDialog(saved_close: boolean) {
-    if (saved_close) {
-      this.dialog.close(this.vehicle)
+  closeDialog() {
+    if (this.savedChange) {
+      this.dialog.close(this.vehicle);
     }
     else {
-      this.dialog.close()
+      this.dialog.close();
     }
   }
 }

@@ -6,7 +6,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {VehiclesService} from "../../../services/vehicles.service";
 import {VehiclesFormComponent} from "../vehicles-form/vehicles-form.component";
 import {MatDialog} from "@angular/material/dialog";
-import {VehicleModel} from "../../../models/vehicle.model";
+import {APIResponseModel, VehicleModel} from "../../../models/vehicle.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {DialogService} from "../../../services/dialog.service";
@@ -54,8 +54,6 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
   }
 
   public openDialogVehicles(vehicle?: VehicleModel) {
-
-
     // tirar essa ação
     let action = 'create';
 
@@ -72,10 +70,9 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
       }
     });
 
-    // Uso essa função para saber se o veiculo foi salvo na tabela, se o retorno da API for success, eu listo os veiculos
-    ref.afterClosed().subscribe(result => {
-      console.log(result)
-      if (result.success) {
+    // Uso essa função para saber listar os veiculos depois que o dialogo for fechado
+    ref.afterClosed().subscribe((vehicle: VehicleModel) => {
+      if (vehicle) {
         this.listVehicle();
       }
     });
