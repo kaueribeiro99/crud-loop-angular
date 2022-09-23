@@ -1,0 +1,6 @@
+Com o firebase já instalado no projeto e autenticado, adicione o comando abaixo:
+
+1- ng add @angular/fire
+2 - ng deploy
+
+Após fazer esses dois comandos basta rodar o ng deploy que ele irá gerar a dist do projeto e vai fazer o deploy automatico no firebase

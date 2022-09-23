@@ -1,4 +1,13 @@
 {
+  "targets": {
+    "crud-loop": {
+      "hosting": {
+        "crud-loop": [
+          "crud-loop"
+        ]
+      }
+    }
+  },
   "projects": {
     "default": "crud-loop"
   }
