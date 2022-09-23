@@ -1,0 +1,15 @@
+Crie sua conta e seu projeto no Firebase
+
+##### NG BUILD #####
+1 - Gere a build do projeto com "ng build"
+
+##### FIREBASE #####
+1 - Instalar o firebase via npm (npm install -g firebase-tools);
+2 - No terminal digite "firebase login", escolha sua conta do Google;
+3 - Inicialize o firebase no terminal com "firebase init";
+4 - Escolha a funcionalidade Hosting Deploy...;
+5 - Escolha um projeto existente e escreva o nome do diretorio como "dist/nome-do-projeto-criado-no-dist";
+6 - Depois disso digite no terminal "firebase deploy" e seja feliz !
+
+
+Obs:. O Firebase tem de graça até 10GB para armazenar seus projetos
