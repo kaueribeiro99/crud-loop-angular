@@ -142,7 +142,7 @@ export class VehiclesFormComponent implements OnInit {
     });
   }
 
-  // Método para verificar se posso ou não fechar o dialogo
+  // Método para verificar se fecho o dialogo e listo os veiculos, se teve alteração no dialogo eu listo os veiculos, se não teve eu não listo
   closeDialog() {
     if (this.savedChange) {
       this.dialog.close(this.vehicle);
