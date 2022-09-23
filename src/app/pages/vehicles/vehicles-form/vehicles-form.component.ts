@@ -61,8 +61,8 @@ export class VehiclesFormComponent implements OnInit {
       icon: [null],
       name: [null, Validators.required],
       codbt: [null, Validators.required],
-      type: [null],
-      company: [null]
+      type: type,
+      company: company
     });
   }
 
@@ -70,11 +70,11 @@ export class VehiclesFormComponent implements OnInit {
     if (this.vehicleForm.valid) { // Aqui eu válido o form antes de fazer qualquer ação
 
       this.loading = true;
+      let vehicles = this.vehicleForm.value
 
       if (this.action == 'edit' && this.idVehicle) { // Verifico se a ação é o click no botão de Editar e se tem ID no request, se sim, eu preencho o form e chamo o método de Update
-        this.vehicleService.putVehicles(this.idVehicle, this.vehicleForm.value).then((response_api)  => {
-          this.vehicle = response_api.data;
-          this.idVehicle = this.vehicle.id;
+        this.vehicleService.putVehicles(this.idVehicle, vehicles).then((response_api)  => {
+          this.vehicle = response_api;
 
           this.openSnackBar('Vehicle updated successfully', 'Close', 'success');
           if (close)
@@ -89,20 +89,13 @@ export class VehiclesFormComponent implements OnInit {
         })
       } else { // Se não tiver ID e a ação não for de Edit, eu chamo o método de Create com o form limpo
 
-        let icon = this.vehicleForm.get('icon')?.value
-        let codbt = this.vehicleForm.get('codbt')?.value
-        let name = this.vehicleForm.get('name')?.value
+        this.vehicleService.postVehicles(vehicles).then((response_api) => {
+          this.vehicle = response_api;
+          this.idVehicle = response_api.data.id;
+          if (this.idVehicle)
+            this.title = 'Edit Vehicle';
+            this.action = 'edit';
 
-        this.vehicleService.postVehicles(icon, codbt, name, type, company).then((response_api) => {
-          this.vehicle = response_api.data;
-          this.idVehicle = this.vehicle.id;
-          this.vehicle.type = type;
-          this.vehicle.company = company;
-          this.title = 'Edit Vehicle';
-          this.action = 'edit';
-
-          console.log(this.vehicle.type)
-          console.log(this.vehicle.company)
           this.openSnackBar('Vehicle created successfully', 'Close', 'success');
           if (close)
             this.closeDialog(true);

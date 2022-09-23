@@ -73,9 +73,10 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
     });
 
     // Uso essa função para saber se o veiculo foi salvo na tabela, se o retorno da API for success, eu listo os veiculos
-    ref.afterClosed().subscribe((result: {success: boolean}) => {
+    ref.afterClosed().subscribe(result => {
+      console.log(result)
       if (result.success) {
-        this.listVehicle()
+        this.listVehicle();
       }
     });
   }

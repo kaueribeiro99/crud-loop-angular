@@ -41,11 +41,11 @@ export class VehiclesService {
       .catch()
   }
 
-  async postVehicles(icon: string, codbt: string, name: string, type: number, company: number):Promise<any>{
+  async postVehicles(body: VehicleModel):Promise<any>{
 
     let headers = await this.apiHeader()
 
-    return this.http.post<VehicleModel[]>(this.APIVehicle, {icon, codbt, name,  type, company}, {headers: headers})
+    return this.http.post<VehicleModel[]>(this.APIVehicle, body, {headers: headers})
       .toPromise()
       .catch()
   }
