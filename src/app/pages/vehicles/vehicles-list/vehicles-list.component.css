@@ -19,6 +19,7 @@ td, th {
   color: white;
   font-weight: 600;
   box-shadow: 0px 0px 10px gray;
+  z-index: 99; /* o z-index eu uso para os outros botoes não sobrescrever o toolbar */
 }
 
 .toolbar img {
