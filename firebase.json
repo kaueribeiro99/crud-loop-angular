@@ -3,7 +3,9 @@
     "target": "crud-loop",
     "public": "dist/crud-loop",
     "ignore": [
-      "**/.*"
+      "**/.*",
+      "**node_modules.*",
+      "**.github.*"
     ],
     "headers": [
       {
