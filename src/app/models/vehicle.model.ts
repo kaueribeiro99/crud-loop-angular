@@ -6,7 +6,7 @@ export class VehicleModel {
     public codbt: string,
     public name: string,
     public type: number,
-    public icon?: string, // eu uso ?: para dizer que essa variavel não é obrigatória
+    public icon?: string, // eu uso ?: para dizer que essa variavel pode ser null
   ) { }
 }
 

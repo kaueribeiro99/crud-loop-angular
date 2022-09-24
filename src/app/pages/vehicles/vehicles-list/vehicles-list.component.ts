@@ -54,18 +54,11 @@ export class VehiclesListComponent implements AfterViewInit, OnInit {
   }
 
   public openDialogVehicles(vehicle?: VehicleModel) {
-    // tirar essa ação
-    let action = 'create';
-
-    if (vehicle) {
-      action = 'edit';
-    }
 
     let ref = this.dialog.open(VehiclesFormComponent, {
       panelClass: 'dialog',
       autoFocus: false,
       data: {
-        action: action,
         vehicle: vehicle
       }
     });

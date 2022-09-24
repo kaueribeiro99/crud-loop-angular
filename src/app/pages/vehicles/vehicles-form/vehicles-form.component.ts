@@ -31,7 +31,7 @@ export class VehiclesFormComponent implements OnInit {
       private _snackBar: MatSnackBar,
       private vehicleService: VehiclesService,
       public dialog: MatDialogRef<VehiclesFormComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: VehiclesFormComponent
+      @Inject(MAT_DIALOG_DATA) public vehicleFormComponent: VehiclesFormComponent
   ) {}
 
   ngOnInit() {
@@ -39,19 +39,16 @@ export class VehiclesFormComponent implements OnInit {
     this.logicDialog();
   }
 
-  // Método para diferenciar o dialogo quando a ação é de Edit e quando é de Create
+  // Método para diferenciar o dialogo quando é de Edit e quando é Create
   logicDialog(){
-    this.title = this.data.title;
-    this.action = this.data.action;
-    this.idVehicle = this.data.idVehicle;
-    if (this.action == 'edit') {
-      this.vehicle = this.data.vehicle;
-      this.idVehicle = this.data.vehicle.id;
+    this.title = this.vehicleFormComponent.title;
+    if (this.vehicleFormComponent.vehicle) {
+      this.vehicle = this.vehicleFormComponent.vehicle;
+      this.idVehicle = this.vehicleFormComponent.vehicle.id;
       this.vehicle.type = type;
       this.title = 'Edit Vehicle';
-      this.populateForm(this.vehicle);
+      this.populateForm(this.vehicleFormComponent.vehicle);
     } else {
-      this.vehicle = this.data.vehicle;
       this.title = 'New Vehicle';
     }
   }
@@ -73,10 +70,9 @@ export class VehiclesFormComponent implements OnInit {
       this.loading = true;
       let vehicles = this.vehicleForm.value
 
-      if (this.action == 'edit' && this.idVehicle) { // Verifico se a ação é o click no botão de Editar e se tem ID no request, se sim, eu preencho o form e chamo o método de Update
-        this.vehicleService.putVehicles(this.idVehicle, vehicles).then((response_api: APIResponseModel)  => {
+      if (this.vehicle) { // Verifico se a ação é o click no botão de Editar e se tem ID no request, se sim, eu preencho o form e chamo o método de Update
+        this.vehicleService.putVehicles(this.vehicle.id, vehicles).then((response_api: APIResponseModel)  => {
           this.vehicle = response_api.data;
-          this.idVehicle = response_api.data.id;
           this.savedChange = true;
 
           this.openSnackBar('Vehicle updated successfully', 'Close', 'success');
@@ -96,11 +92,9 @@ export class VehiclesFormComponent implements OnInit {
 
           // Uso essa lógica para o botão Save --> verifico se o dialog tem ID, se tiver eu chamo a ação de Edit, se não é a ação de Create
           this.vehicle = response_api.data;
-          this.idVehicle = response_api.data.id;
           this.savedChange = true;
-          if (this.idVehicle)
+          if (this.vehicle)
             this.title = 'Edit Vehicle';
-            this.action = 'edit';
 
           this.openSnackBar('Vehicle created successfully', 'Close', 'success');
           if (close)
