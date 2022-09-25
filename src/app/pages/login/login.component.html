@@ -1,6 +1,6 @@
 <div class="background-img">
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()"> <!--Uso o formGroup pois ele quem vai pegar as informacoes digitadas no input e-mail e password-->
-  <img src="../../../assets/images/logo_loop_preto.png" style="width: 390px;">
+  <img src="../../../assets/images/logo_loop_preto.png" class="logo-login">
   <mat-form-field class="login-full-width" appearance="outline">
     <mat-label>Email</mat-label>
     <input type="email" matInput formControlName="email" placeholder="Ex. test@example.com">
@@ -21,10 +21,8 @@
   <section>
     <div class="">
 <!--O botão tem que ser do tipo "submit" para enviar as informações para a API-->
-      <button type="submit" style="width: 420px;font-weight: bold; margin-top: 20px; background-color: #f48c06; border-radius: 10px;" mat-raised-button color="primary">Login</button>
+      <button type="submit" class="button-login">Login</button>
     </div>
   </section>
 </form>
-
-
-
+</div>
