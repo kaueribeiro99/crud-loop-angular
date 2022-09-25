@@ -31,8 +31,12 @@ td, th {
   border: none;
   color: #ffffff;
   font-size: 15px;
-  margin-left: 70%;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
   font-weight: bold;
+  margin-right: 4%;
 }
 
 .toolbar #logout-logo:hover {
