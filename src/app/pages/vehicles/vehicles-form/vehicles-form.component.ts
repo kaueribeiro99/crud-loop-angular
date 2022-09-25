@@ -18,13 +18,10 @@ export class VehiclesFormComponent implements OnInit {
 
   //Uso o !: para não precisar implementar um valor para a variável
   title!: string; // title da página randômico
-  action!: string; // ação para saber se o usuário está editando ou incluindo
   vehicle!: VehicleModel
   loading: boolean = false;
   vehicleForm!: FormGroup; // inicializo o formGroup aqui
-  idVehicle!: number; // uso essa variavél para saber se a requisição já possui ID
-  savedChange!: boolean;
-
+  savedChange!: boolean; // variavel para saber se salvou alteração do dialogo
 
   constructor(
       private formBuilder: FormBuilder,
@@ -44,7 +41,6 @@ export class VehiclesFormComponent implements OnInit {
     this.title = this.vehicleFormComponent.title;
     if (this.vehicleFormComponent.vehicle) {
       this.vehicle = this.vehicleFormComponent.vehicle;
-      this.idVehicle = this.vehicleFormComponent.vehicle.id;
       this.vehicle.type = type;
       this.title = 'Edit Vehicle';
       this.populateForm(this.vehicleFormComponent.vehicle);
@@ -53,7 +49,7 @@ export class VehiclesFormComponent implements OnInit {
     }
   }
 
-  // Método para validar os inputs
+  // Método para validar os forms
   formValidators() {
     this.vehicleForm = this.formBuilder.group({
       icon: [null],
@@ -70,8 +66,9 @@ export class VehiclesFormComponent implements OnInit {
       this.loading = true;
       let vehicles = this.vehicleForm.value
 
-      if (this.vehicle) { // Verifico se a ação é o click no botão de Editar e se tem ID no request, se sim, eu preencho o form e chamo o método de Update
+      if (this.vehicle) { // Verifico se tem vehicle no request, se sim, eu preencho o form e chamo o método de Update
         this.vehicleService.putVehicles(this.vehicle.id, vehicles).then((response_api: APIResponseModel)  => {
+
           this.vehicle = response_api.data;
           this.savedChange = true;
 
@@ -86,13 +83,14 @@ export class VehiclesFormComponent implements OnInit {
         .finally(() => {
           this.loading = false;
         })
-      } else { // Se não tiver ID e a ação não for de Edit, eu chamo o método de Create com o form limpo
+      } else { // Se não tiver vehicle eu chamo o método de Create com o form limpo
 
         this.vehicleService.postVehicles(vehicles).then((response_api: APIResponseModel) => {
 
-          // Uso essa lógica para o botão Save --> verifico se o dialog tem ID, se tiver eu chamo a ação de Edit, se não é a ação de Create
           this.vehicle = response_api.data;
           this.savedChange = true;
+
+          // Uso essa lógica para o botão Save --> verifico se o dialog tem vehicle, se tiver eu chamo a ação de Edit, se não é a ação de Create
           if (this.vehicle)
             this.title = 'Edit Vehicle';
 
@@ -114,9 +112,9 @@ export class VehiclesFormComponent implements OnInit {
   // Método para pegar os icons do projeto
   public onIconSelected = (icon: string) => {
     this.vehicleForm.patchValue({'icon': icon});
-  };
+  }
 
-  // Método para preencher o form com os dados
+  // Método para preencher/popular o form com os dados
   populateForm(vehicle: VehicleModel) {
     this.vehicleForm.patchValue(vehicle);
   }
