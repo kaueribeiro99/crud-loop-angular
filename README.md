@@ -2,8 +2,6 @@
 
 Access the project online at: https://crud-loop.web.app/login
 
-Use the email: murilobalves1@gmail.com and password: 12345678
-
 ## Crud Loop
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
